@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MoviesTableViewController.swift
 //  Final-Sandusky
 //
 //  Created by Taylor Sandusky on 12/6/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MoviesTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
