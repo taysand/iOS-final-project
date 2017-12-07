@@ -13,10 +13,19 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let dataController = DataController(modelName: "Final_Sandusky")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //set up connectin to persistent stores
+        dataController.load()
+        
+        //injects the dataController into NotebooksTableViewController
+        let navigationController = window?.rootViewController as! UINavigationController
+        let moviesTableViewController = navigationController.topViewController as! MoviesTableViewController
+        moviesTableViewController.dataController = dataController
+        
         return true
     }
 

@@ -7,23 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		343A35661FD91947004ED0F7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 343A35651FD91947004ED0F7 /* Settings.bundle */; };
 		34AC0E211FD8829B00073B07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E201FD8829B00073B07 /* AppDelegate.swift */; };
-		34AC0E231FD8829B00073B07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E221FD8829B00073B07 /* ViewController.swift */; };
+		34AC0E231FD8829B00073B07 /* MoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E221FD8829B00073B07 /* MoviesTableViewController.swift */; };
 		34AC0E261FD8829B00073B07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34AC0E241FD8829B00073B07 /* Main.storyboard */; };
 		34AC0E291FD8829B00073B07 /* Final_Sandusky.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E271FD8829B00073B07 /* Final_Sandusky.xcdatamodeld */; };
 		34AC0E2B1FD8829B00073B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34AC0E2A1FD8829B00073B07 /* Assets.xcassets */; };
 		34AC0E2E1FD8829B00073B07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34AC0E2C1FD8829B00073B07 /* LaunchScreen.storyboard */; };
+		34AC0E391FD8857D00073B07 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E381FD8857D00073B07 /* DataController.swift */; };
+		34AC0E3B1FD88DC400073B07 /* AddMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E3A1FD88DC400073B07 /* AddMovieViewController.swift */; };
+		34AC0E3D1FD88DCE00073B07 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E3C1FD88DCE00073B07 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		343A35651FD91947004ED0F7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		34AC0E1D1FD8829B00073B07 /* Final-Sandusky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Final-Sandusky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34AC0E201FD8829B00073B07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		34AC0E221FD8829B00073B07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		34AC0E221FD8829B00073B07 /* MoviesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewController.swift; sourceTree = "<group>"; };
 		34AC0E251FD8829B00073B07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34AC0E281FD8829B00073B07 /* Final_Sandusky.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Final_Sandusky.xcdatamodel; sourceTree = "<group>"; };
 		34AC0E2A1FD8829B00073B07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34AC0E2D1FD8829B00073B07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34AC0E2F1FD8829B00073B07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34AC0E381FD8857D00073B07 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		34AC0E3A1FD88DC400073B07 /* AddMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieViewController.swift; sourceTree = "<group>"; };
+		34AC0E3C1FD88DCE00073B07 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,43 @@
 		34AC0E1F1FD8829B00073B07 /* Final-Sandusky */ = {
 			isa = PBXGroup;
 			children = (
+				34AC0E351FD882A100073B07 /* Controller */,
+				34AC0E361FD882A800073B07 /* View */,
+				34AC0E2F1FD8829B00073B07 /* Info.plist */,
+				34AC0E371FD882AD00073B07 /* Model */,
+				343A35651FD91947004ED0F7 /* Settings.bundle */,
+			);
+			path = "Final-Sandusky";
+			sourceTree = "<group>";
+		};
+		34AC0E351FD882A100073B07 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				34AC0E201FD8829B00073B07 /* AppDelegate.swift */,
-				34AC0E221FD8829B00073B07 /* ViewController.swift */,
+				34AC0E221FD8829B00073B07 /* MoviesTableViewController.swift */,
+				34AC0E3A1FD88DC400073B07 /* AddMovieViewController.swift */,
+				34AC0E3C1FD88DCE00073B07 /* MovieDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		34AC0E361FD882A800073B07 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				34AC0E241FD8829B00073B07 /* Main.storyboard */,
 				34AC0E2A1FD8829B00073B07 /* Assets.xcassets */,
 				34AC0E2C1FD8829B00073B07 /* LaunchScreen.storyboard */,
-				34AC0E2F1FD8829B00073B07 /* Info.plist */,
-				34AC0E271FD8829B00073B07 /* Final_Sandusky.xcdatamodeld */,
 			);
-			path = "Final-Sandusky";
+			path = View;
+			sourceTree = "<group>";
+		};
+		34AC0E371FD882AD00073B07 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				34AC0E271FD8829B00073B07 /* Final_Sandusky.xcdatamodeld */,
+				34AC0E381FD8857D00073B07 /* DataController.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				343A35661FD91947004ED0F7 /* Settings.bundle in Resources */,
 				34AC0E2E1FD8829B00073B07 /* LaunchScreen.storyboard in Resources */,
 				34AC0E2B1FD8829B00073B07 /* Assets.xcassets in Resources */,
 				34AC0E261FD8829B00073B07 /* Main.storyboard in Resources */,
@@ -139,8 +176,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34AC0E231FD8829B00073B07 /* ViewController.swift in Sources */,
+				34AC0E231FD8829B00073B07 /* MoviesTableViewController.swift in Sources */,
+				34AC0E391FD8857D00073B07 /* DataController.swift in Sources */,
 				34AC0E211FD8829B00073B07 /* AppDelegate.swift in Sources */,
+				34AC0E3B1FD88DC400073B07 /* AddMovieViewController.swift in Sources */,
+				34AC0E3D1FD88DCE00073B07 /* MovieDetailViewController.swift in Sources */,
 				34AC0E291FD8829B00073B07 /* Final_Sandusky.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

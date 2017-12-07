@@ -10,15 +10,28 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
+    var movie: Movie!
+    
+    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var myRatingLabel: UILabel!
+    @IBOutlet weak var femaleCharacterLabel: UILabel!
+    @IBOutlet weak var herStoryLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateUI()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func updateUI() {
+        self.title = movie.name
+        yearLabel.text = "Year: \(movie.year)"
+        genreLabel.text = "Genre: \(movie.genre!)"
+        ratingLabel.text = "Rating: \(String(format: "%.1f", movie.rating))/10"
+        myRatingLabel.text = "My rating: \(String(format: "%.1f", movie.userRating))/10"
+        femaleCharacterLabel.text = "Main female character? \((movie.mainFemaleCharacter ? "Yes" : "No"))"
+        herStoryLabel.text = "Her story? \((movie.herStory ? "Yes" : "No"))"
     }
     
 
