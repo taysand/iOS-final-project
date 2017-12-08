@@ -33,9 +33,9 @@ class MoviesTableViewController: UITableViewController {
     func updateOptimism() {
         switch optimistic {
         case true:
-            optimismButton.title = "Pessimism"
+            optimismButton.tintColor = .green
         case false:
-            optimismButton.title = "Optimism"
+            optimismButton.tintColor = .red
         }
     }
 
@@ -110,6 +110,8 @@ class MoviesTableViewController: UITableViewController {
             let selectedRow = tableView.indexPathForSelectedRow?.row
             let selectedMovie = movies[selectedRow!]
             movieDetailViewController.movie = selectedMovie
+            movieDetailViewController.dataController = dataController
+            movieDetailViewController.optimistic = optimistic
         case "addMovieSegue":
             let addMovieViewController = segue.destination as! AddMovieViewController
             addMovieViewController.dataController = dataController

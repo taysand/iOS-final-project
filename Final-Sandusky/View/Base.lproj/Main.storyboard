@@ -131,13 +131,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6v2-9c-VH8">
                                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5" placeholder="5" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IaN-L7-zm4">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="3.5" placeholder="3.5" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IaN-L7-zm4">
                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="aNj-fM-uCn">
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="aNj-fM-uCn">
                                                         <rect key="frame" x="-2" y="0.0" width="4" height="31"/>
                                                         <connections>
                                                             <action selector="ratingSliderChanged:" destination="DL3-Cr-qEW" eventType="valueChanged" id="Ney-KO-OX5"/>
@@ -167,13 +167,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVu-JW-xrP">
                                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5" placeholder="5" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="04J-nv-cDm">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="3.5" placeholder="3.5" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="04J-nv-cDm">
                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="2ln-Sy-XOK">
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="2ln-Sy-XOK">
                                                         <rect key="frame" x="-2" y="0.0" width="4" height="31"/>
                                                         <connections>
                                                             <action selector="userRatingSliderChanged:" destination="DL3-Cr-qEW" eventType="valueChanged" id="BIa-Le-nag"/>
@@ -231,9 +231,17 @@
                                 </constraints>
                                 <variation key="heightClass=compact" spacing="5"/>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please fill all fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApB-9H-hEe">
+                                <rect key="frame" x="-49.5" y="489" width="139.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ApB-9H-hEe" firstAttribute="top" secondItem="FpE-cs-s9L" secondAttribute="top" constant="425" id="2F6-ML-fu1"/>
+                            <constraint firstItem="ApB-9H-hEe" firstAttribute="centerX" secondItem="FpE-cs-s9L" secondAttribute="centerX" id="JFA-J3-MeU"/>
                             <constraint firstItem="FpE-cs-s9L" firstAttribute="trailing" secondItem="dOI-8U-00e" secondAttribute="trailing" constant="20" id="LSx-Fv-LN3"/>
                             <constraint firstItem="dOI-8U-00e" firstAttribute="top" secondItem="FpE-cs-s9L" secondAttribute="top" constant="30" id="phT-EI-vbJ">
                                 <variation key="heightClass=compact" constant="10"/>
@@ -245,7 +253,7 @@
                     <navigationItem key="navigationItem" title="Add Movie" id="nHH-t4-PVY">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Nt1-sf-Iio">
                             <connections>
-                                <action selector="saveMovieButtonTapped:" destination="DL3-Cr-qEW" id="8Ng-Xp-S3M"/>
+                                <action selector="saveMovieButtonTapped:" destination="DL3-Cr-qEW" id="jy0-pl-gnN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -258,17 +266,18 @@
                         <outlet property="ratingTextField" destination="IaN-L7-zm4" id="0t4-PC-rzo"/>
                         <outlet property="userRatingSlider" destination="2ln-Sy-XOK" id="yBL-Jn-RiB"/>
                         <outlet property="userRatingTextField" destination="04J-nv-cDm" id="hNy-Pg-xJL"/>
+                        <outlet property="warningLabel" destination="ApB-9H-hEe" id="Vbm-2R-g1M"/>
                         <outlet property="yearTextField" destination="DNQ-qy-ptq" id="jwS-KK-I4V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iq0-Zw-cuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.79999999999995" y="436.73163418290858"/>
+            <point key="canvasLocation" x="948" y="537"/>
         </scene>
         <!--Specific Movie-->
         <scene sceneID="anW-0Q-L6g">
             <objects>
-                <viewController id="DkB-HA-68r" customClass="MovieDetailViewController" customModule="Final_Sandusky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="movieDetailView" id="DkB-HA-68r" customClass="MovieDetailViewController" customModule="Final_Sandusky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YuT-QM-dzw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -323,7 +332,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3fR-hE-kaP"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Specific Movie" id="dFh-CS-ejj"/>
+                    <navigationItem key="navigationItem" title="Specific Movie" id="dFh-CS-ejj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="AZY-Ml-gVI">
+                            <connections>
+                                <segue destination="DL3-Cr-qEW" kind="show" id="lyo-SL-pKf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="femaleCharacterLabel" destination="Ih8-JY-YFT" id="Orf-JO-uCw"/>
                         <outlet property="genreLabel" destination="Ekf-sK-aWf" id="TMw-q8-hsJ"/>
@@ -356,4 +371,7 @@
             <point key="canvasLocation" x="-631" y="71"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Xvm-C7-FPF"/>
+    </inferredMetricsTieBreakers>
 </document>
