@@ -36,7 +36,7 @@ class AddMovieViewController: UIViewController {
         super.viewDidLoad()
         
         if let oldMovie = movie {
-//            fetchData(movieToFind: oldMovie)
+            self.title = "Edit Movie"
             updatingMovie = true
             nameTextField.text = oldMovie.name
             yearTextField.text = oldMovie.year.description
@@ -48,6 +48,7 @@ class AddMovieViewController: UIViewController {
             userRatingTextField.text = String(format: "%.1f", userRatingSlider.value)
             ratingTextField.text = String(format: "%.1f", ratingSlider.value)
         } else {
+            self.title = "Add Movie"
             switch optimistic {
             case true:
                 femaleCharacterSwitch.setOn(true, animated: false)
@@ -88,7 +89,7 @@ class AddMovieViewController: UIViewController {
 
     @IBAction func saveMovieButtonTapped(_ sender: Any) {
         if genreTextField.text != "" && nameTextField.text != "" && yearTextField.text != "" {
-            if fetchData(movieToFind: movie!.name!) && updatingMovie {
+            if updatingMovie && fetchData(movieToFind: movie!.name!) {
                 movie!.genre = genreTextField.text
                 movie!.herStory = herStorySwitch.isOn
                 movie!.rating = ratingSlider.value
@@ -102,7 +103,7 @@ class AddMovieViewController: UIViewController {
                 newMovie.herStory = herStorySwitch.isOn
                 newMovie.rating = ratingSlider.value
                 newMovie.mainFemaleCharacter = femaleCharacterSwitch.isOn
-                newMovie.name = title
+                newMovie.name = nameTextField.text
                 newMovie.userRating = userRatingSlider.value
                 newMovie.year = Int32(yearTextField.text!)!
                 movie = newMovie
