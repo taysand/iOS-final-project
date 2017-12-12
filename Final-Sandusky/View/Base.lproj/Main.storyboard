@@ -231,7 +231,7 @@
                                 </constraints>
                                 <variation key="heightClass=compact" spacing="5"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Please fill all fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApB-9H-hEe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please fill all fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApB-9H-hEe">
                                 <rect key="frame" x="-49.5" y="489" width="139.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -240,6 +240,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ApB-9H-hEe" firstAttribute="top" secondItem="FpE-cs-s9L" secondAttribute="top" constant="425" id="2F6-ML-fu1">
+                                <variation key="heightClass=compact" constant="300"/>
+                            </constraint>
                             <constraint firstItem="ApB-9H-hEe" firstAttribute="centerX" secondItem="FpE-cs-s9L" secondAttribute="centerX" id="JFA-J3-MeU"/>
                             <constraint firstItem="FpE-cs-s9L" firstAttribute="trailing" secondItem="dOI-8U-00e" secondAttribute="trailing" constant="20" id="LSx-Fv-LN3"/>
                             <constraint firstItem="dOI-8U-00e" firstAttribute="top" secondItem="FpE-cs-s9L" secondAttribute="top" constant="30" id="phT-EI-vbJ">

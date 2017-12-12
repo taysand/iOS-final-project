@@ -14,7 +14,6 @@ class MoviesTableViewController: UITableViewController {
 
     var movies:[Movie] = []
     var dataController: DataController!
-    
     let userDefaults = UserDefaults.standard
     @IBOutlet weak var optimismButton: UIBarButtonItem!
     var optimistic = false
@@ -56,10 +55,11 @@ class MoviesTableViewController: UITableViewController {
         let sortByTitleAscending = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortByTitleAscending]
 
-        //will fail silently
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
             movies = result
             tableView.reloadData()
+        } else {
+            print("couldn't fetch data")
         }
     }
     

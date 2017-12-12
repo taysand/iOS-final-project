@@ -9,10 +9,6 @@
 import UIKit
 import CoreData
 
-protocol MovieSaver {
-    func saveMovie(movie: Movie)
-}
-
 class AddMovieViewController: UIViewController {
 
     var dataController: DataController!
@@ -49,16 +45,8 @@ class AddMovieViewController: UIViewController {
             ratingTextField.text = String(format: "%.1f", ratingSlider.value)
         } else {
             self.title = "Add Movie"
-            switch optimistic {
-            case true:
-                femaleCharacterSwitch.setOn(true, animated: false)
-                herStorySwitch.setOn(true, animated: false)
-            case false:
-                femaleCharacterSwitch.setOn(false, animated: false)
-                 herStorySwitch.setOn(false, animated: false)
-            default:
-                break
-            }
+            femaleCharacterSwitch.setOn(optimistic, animated: false)
+            herStorySwitch.setOn(optimistic, animated: false)
         }
     }
     
@@ -89,23 +77,30 @@ class AddMovieViewController: UIViewController {
 
     @IBAction func saveMovieButtonTapped(_ sender: Any) {
         if genreTextField.text != "" && nameTextField.text != "" && yearTextField.text != "" {
+            let genre = genreTextField.text
+            let herStory = herStorySwitch.isOn
+            let rating = ratingSlider.value
+            let femaleCharacter = femaleCharacterSwitch.isOn
+            let name = nameTextField.text
+            let userRating = userRatingSlider.value
+            let year = Int32(yearTextField.text!)!
             if updatingMovie && fetchData(movieToFind: movie!.name!) {
-                movie!.genre = genreTextField.text
-                movie!.herStory = herStorySwitch.isOn
-                movie!.rating = ratingSlider.value
-                movie!.mainFemaleCharacter = femaleCharacterSwitch.isOn
-                movie!.name = nameTextField.text
-                movie!.userRating = userRatingSlider.value
-                movie!.year = Int32(yearTextField.text!)!
+                movie!.genre = genre
+                movie!.herStory = herStory
+                movie!.rating = rating
+                movie!.mainFemaleCharacter = femaleCharacter
+                movie!.name = name
+                movie!.userRating = userRating
+                movie!.year = year
             } else {
                 let newMovie = Movie(context: dataController.viewContext)
-                newMovie.genre = genreTextField.text
-                newMovie.herStory = herStorySwitch.isOn
-                newMovie.rating = ratingSlider.value
-                newMovie.mainFemaleCharacter = femaleCharacterSwitch.isOn
-                newMovie.name = nameTextField.text
-                newMovie.userRating = userRatingSlider.value
-                newMovie.year = Int32(yearTextField.text!)!
+                newMovie.genre = genre
+                newMovie.herStory = herStory
+                newMovie.rating = rating
+                newMovie.mainFemaleCharacter = femaleCharacter
+                newMovie.name = name
+                newMovie.userRating = userRating
+                newMovie.year = year
                 movie = newMovie
             }
             
