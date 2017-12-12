@@ -7,15 +7,14 @@
 //
 
 import UIKit
-
-
-protocol MovieSaver {
-    func saveMovie(movie: Movie)
-}
+import CoreData
 
 class AddMovieViewController: UIViewController {
 
     var dataController: DataController!
+    var movie: Movie?
+    var optimistic: Bool!
+    var updatingMovie = false
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var yearTextField: UITextField!
@@ -27,19 +26,27 @@ class AddMovieViewController: UIViewController {
     @IBOutlet weak var femaleCharacterSwitch: UISwitch!
     @IBOutlet weak var herStorySwitch: UISwitch!
     
-    var optimistic: Bool!
+    @IBOutlet weak var warningLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        switch optimistic {
-        case true:
-            femaleCharacterSwitch.setOn(true, animated: false)
-            herStorySwitch.setOn(true, animated: false)
-        case false:
-            femaleCharacterSwitch.setOn(false, animated: false)
-             herStorySwitch.setOn(false, animated: false)
-        default:
-            break
+        
+        if let oldMovie = movie {
+            self.title = "Edit Movie"
+            updatingMovie = true
+            nameTextField.text = oldMovie.name
+            yearTextField.text = oldMovie.year.description
+            genreTextField.text = oldMovie.genre
+            ratingSlider.value = oldMovie.rating
+            userRatingSlider.value = oldMovie.userRating
+            femaleCharacterSwitch.isOn = oldMovie.mainFemaleCharacter
+            herStorySwitch.isOn = oldMovie.herStory
+            userRatingTextField.text = String(format: "%.1f", userRatingSlider.value)
+            ratingTextField.text = String(format: "%.1f", ratingSlider.value)
+        } else {
+            self.title = "Add Movie"
+            femaleCharacterSwitch.setOn(optimistic, animated: false)
+            herStorySwitch.setOn(optimistic, animated: false)
         }
     }
     
@@ -50,30 +57,68 @@ class AddMovieViewController: UIViewController {
     @IBAction func ratingSliderChanged(_ sender: Any) {
         ratingTextField.text = String(format: "%.1f", ratingSlider.value)
     }
+    
+    func fetchData(movieToFind: String) -> Bool {
+        let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest();
+        fetchRequest.predicate = NSPredicate(format: "name == %@", movieToFind)
+
+        if var result = try? dataController.viewContext.fetch(fetchRequest) {
+            if let oldMovie = result.popLast() {
+                movie = oldMovie
+                return true
+            } else {
+                print("movie not found")
+            }
+        } else {
+            print("fetch request failed")
+        }
+        return false
+    }
 
     @IBAction func saveMovieButtonTapped(_ sender: Any) {
-        let newMovie = Movie(context: dataController.viewContext)
-        newMovie.genre = genreTextField.text
-        newMovie.herStory = herStorySwitch.isOn
-        newMovie.rating = ratingSlider.value
-        newMovie.mainFemaleCharacter = femaleCharacterSwitch.isOn
-        newMovie.name = nameTextField.text
-        newMovie.userRating = userRatingSlider.value
-        let year = Int32(yearTextField.text!)
-        newMovie.year = year!
-        try? dataController.viewContext.save()
-        navigationController?.popViewController(animated: true)
+        if genreTextField.text != "" && nameTextField.text != "" && yearTextField.text != "" {
+            let genre = genreTextField.text
+            let herStory = herStorySwitch.isOn
+            let rating = ratingSlider.value
+            let femaleCharacter = femaleCharacterSwitch.isOn
+            let name = nameTextField.text
+            let userRating = userRatingSlider.value
+            let year = Int32(yearTextField.text!)!
+            if updatingMovie && fetchData(movieToFind: movie!.name!) {
+                movie!.genre = genre
+                movie!.herStory = herStory
+                movie!.rating = rating
+                movie!.mainFemaleCharacter = femaleCharacter
+                movie!.name = name
+                movie!.userRating = userRating
+                movie!.year = year
+            } else {
+                let newMovie = Movie(context: dataController.viewContext)
+                newMovie.genre = genre
+                newMovie.herStory = herStory
+                newMovie.rating = rating
+                newMovie.mainFemaleCharacter = femaleCharacter
+                newMovie.name = name
+                newMovie.userRating = userRating
+                newMovie.year = year
+                movie = newMovie
+            }
+            
+            try? dataController.viewContext.save()
+            
+            warningLabel.textColor = .white
+            
+            //https://stackoverflow.com/questions/25444213/presenting-viewcontroller-with-navigationviewcontroller-swift
+            let movieDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: "movieDetailView") as! MovieDetailViewController
+            movieDetailViewController.movie = movie
+            movieDetailViewController.dataController = dataController
+            movieDetailViewController.optimistic = optimistic
+            self.navigationController!.pushViewController(movieDetailViewController, animated: true)
+        } else {
+            print("oh no")
+            warningLabel.textColor = .red
+        }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -14,7 +14,6 @@ class MoviesTableViewController: UITableViewController {
 
     var movies:[Movie] = []
     var dataController: DataController!
-    
     let userDefaults = UserDefaults.standard
     @IBOutlet weak var optimismButton: UIBarButtonItem!
     var optimistic = false
@@ -33,9 +32,9 @@ class MoviesTableViewController: UITableViewController {
     func updateOptimism() {
         switch optimistic {
         case true:
-            optimismButton.title = "Pessimism"
+            optimismButton.tintColor = .green
         case false:
-            optimismButton.title = "Optimism"
+            optimismButton.tintColor = .red
         }
     }
 
@@ -56,10 +55,11 @@ class MoviesTableViewController: UITableViewController {
         let sortByTitleAscending = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortByTitleAscending]
 
-        //will fail silently
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
             movies = result
             tableView.reloadData()
+        } else {
+            print("couldn't fetch data")
         }
     }
     
@@ -110,6 +110,8 @@ class MoviesTableViewController: UITableViewController {
             let selectedRow = tableView.indexPathForSelectedRow?.row
             let selectedMovie = movies[selectedRow!]
             movieDetailViewController.movie = selectedMovie
+            movieDetailViewController.dataController = dataController
+            movieDetailViewController.optimistic = optimistic
         case "addMovieSegue":
             let addMovieViewController = segue.destination as! AddMovieViewController
             addMovieViewController.dataController = dataController
