@@ -15,6 +15,7 @@ class AddMovieViewController: UIViewController {
     var movie: Movie?
     var optimistic: Bool!
     var updatingMovie = false
+    var posterURL = ""
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var yearTextField: UITextField!
@@ -26,10 +27,13 @@ class AddMovieViewController: UIViewController {
     @IBOutlet weak var femaleCharacterSwitch: UISwitch!
     @IBOutlet weak var herStorySwitch: UISwitch!
     
-    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //https://medium.com/@KaushElsewhere/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         if let oldMovie = movie {
             self.title = "Edit Movie"
@@ -43,6 +47,7 @@ class AddMovieViewController: UIViewController {
             herStorySwitch.isOn = oldMovie.herStory
             userRatingTextField.text = String(format: "%.1f", userRatingSlider.value)
             ratingTextField.text = String(format: "%.1f", ratingSlider.value)
+            posterURL = oldMovie.poster!
         } else {
             self.title = "Add Movie"
             femaleCharacterSwitch.setOn(optimistic, animated: false)
@@ -74,7 +79,91 @@ class AddMovieViewController: UIViewController {
         }
         return false
     }
-
+    
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        if nameTextField.text == "" {
+            infoLabel.textColor = .red
+            infoLabel.text = "Enter a title"
+        } else {
+            infoLabel.textColor = .black
+            infoLabel.text = "Searching"
+            
+            //make api url
+            var url = "https://www.omdbapi.com/?apikey=ced835d8&type=movie"
+            if yearTextField.text != "" {
+                //use year
+                let yearString = yearTextField.text!.trimmingCharacters(in: .whitespaces)
+                url = url + "&y=\(yearString)"
+            }
+            var titleString = nameTextField.text!.trimmingCharacters(in: .whitespaces)
+            titleString = titleString.replacingOccurrences(of: " ", with: "+")
+            url = url + "&t=\(titleString)"
+            print(url)
+            loadMovie(link: url)
+        }
+    }
+    
+    func loadMovie(link: String) {
+        guard let movieURL = URL(string: link) else {
+            print("that string wasn't a url")
+            searchFailed()
+            return
+        }
+        
+        //create data task
+        let task = URLSession.shared.dataTask(with: movieURL, completionHandler: handleMovieDataLoad(data:response:error:))
+        
+        //resume task
+        task.resume()
+    }
+    
+    func searchFailed() {
+        DispatchQueue.main.async {
+            self.infoLabel.textColor = .red
+            self.infoLabel.text = "Search failed"
+        }
+    }
+    
+    func handleMovieDataLoad(data: Data?, response: URLResponse?, error: Error?) {
+        //handle error/no data
+        guard error == nil, let data = data else {
+            print("either there was an error or no data")
+            searchFailed()
+            return
+        }
+        
+        //if we got data back, decode the JSON
+        let decoder = JSONDecoder()
+        let tempMovie: CodableMovie
+        do {
+            tempMovie = try decoder.decode(CodableMovie.self, from: data)
+        } catch {
+            print("couldn't decode JSON to struct")
+            searchFailed()
+            return
+        }
+        
+        //fill in fields
+        DispatchQueue.main.async {
+            self.nameTextField.text = tempMovie.Title
+            self.yearTextField.text = tempMovie.Year.description
+            self.genreTextField.text = tempMovie.Genre
+            if let onlineRating = Float(tempMovie.imdbRating) {
+                self.ratingSlider.value = onlineRating / 2
+            } else {
+                self.ratingSlider.value = 3
+            }
+            self.ratingTextField.text = String(format: "%.1f", self.ratingSlider.value)
+            //plot
+        }
+        posterURL = tempMovie.Poster
+        
+        DispatchQueue.main.async {
+            self.infoLabel.textColor = .green
+            self.infoLabel.text = "Successful search"
+        }
+    }
+    
     @IBAction func saveMovieButtonTapped(_ sender: Any) {
         if genreTextField.text != "" && nameTextField.text != "" && yearTextField.text != "" {
             let genre = genreTextField.text
@@ -92,6 +181,7 @@ class AddMovieViewController: UIViewController {
                 movie!.name = name
                 movie!.userRating = userRating
                 movie!.year = year
+                movie!.poster = posterURL
             } else {
                 let newMovie = Movie(context: dataController.viewContext)
                 newMovie.genre = genre
@@ -101,12 +191,13 @@ class AddMovieViewController: UIViewController {
                 newMovie.name = name
                 newMovie.userRating = userRating
                 newMovie.year = year
+                newMovie.poster = posterURL
                 movie = newMovie
             }
             
             try? dataController.viewContext.save()
             
-            warningLabel.textColor = .white
+            infoLabel.textColor = .white
             
             //https://stackoverflow.com/questions/25444213/presenting-viewcontroller-with-navigationviewcontroller-swift
             let movieDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: "movieDetailView") as! MovieDetailViewController
@@ -116,9 +207,10 @@ class AddMovieViewController: UIViewController {
             self.navigationController!.pushViewController(movieDetailViewController, animated: true)
         } else {
             print("oh no")
-            warningLabel.textColor = .red
+            infoLabel.textColor = .red
+            infoLabel.text = "Please fill all fields"
         }
     }
-
+    
 }
 

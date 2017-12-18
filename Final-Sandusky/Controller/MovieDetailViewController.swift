@@ -14,6 +14,7 @@ class MovieDetailViewController: UIViewController {
     var dataController: DataController!
     var optimistic: Bool!
     
+    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -37,6 +38,34 @@ class MovieDetailViewController: UIViewController {
         myRatingLabel.text = "My rating: \(String(format: "%.1f", movie.userRating))/5"
         femaleCharacterLabel.text = "Main female character? \((movie.mainFemaleCharacter ? "Yes" : "No"))"
         herStoryLabel.text = "Her story? \((movie.herStory ? "Yes" : "No"))"
+        loadPoster()
+    }
+    
+    func loadPoster() {
+        guard let url = URL(string: movie.poster!) else {
+            print("that string wasn't a url")
+            return
+        }
+        
+        //create data task
+        let task = URLSession.shared.dataTask(with: url, completionHandler: handlePosterDataLoad(data:response:error:))
+        
+        //resume task
+        task.resume()
+    }
+    
+    func handlePosterDataLoad(data: Data?, response: URLResponse?, error: Error?) {
+        //handle error/no data
+        guard error == nil, let data = data else {
+            print("either there was an error or no data")
+            return
+        }
+        
+        let downloadedImage = UIImage(data: data)
+        
+        DispatchQueue.main.async {
+            self.posterImageView.image = downloadedImage
+        }
     }
     
     // MARK: - Navigation
@@ -53,4 +82,7 @@ class MovieDetailViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
 
+    @IBAction func swipeRight(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }

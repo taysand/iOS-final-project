@@ -71,7 +71,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="A6B-8Y-5uh">
                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbj-KR-jbL">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbj-KR-jbL">
                                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -81,7 +81,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -115,7 +115,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -232,22 +232,35 @@
                                 <variation key="heightClass=compact" spacing="5"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please fill all fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApB-9H-hEe">
-                                <rect key="frame" x="-49.5" y="489" width="139.5" height="20.5"/>
+                                <rect key="frame" x="-49.5" y="471" width="139.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MwQ-5n-Y90">
+                                <rect key="frame" x="-4" y="507" width="48" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchButtonTapped:" destination="DL3-Cr-qEW" eventType="touchUpInside" id="pyE-SV-8CY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="ApB-9H-hEe" firstAttribute="top" secondItem="FpE-cs-s9L" secondAttribute="top" constant="425" id="2F6-ML-fu1">
-                                <variation key="heightClass=compact" constant="300"/>
+                            <constraint firstItem="ApB-9H-hEe" firstAttribute="top" secondItem="FpE-cs-s9L" secondAttribute="top" constant="407" id="2F6-ML-fu1">
+                                <variation key="heightClass=compact" constant="260"/>
                             </constraint>
                             <constraint firstItem="ApB-9H-hEe" firstAttribute="centerX" secondItem="FpE-cs-s9L" secondAttribute="centerX" id="JFA-J3-MeU"/>
                             <constraint firstItem="FpE-cs-s9L" firstAttribute="trailing" secondItem="dOI-8U-00e" secondAttribute="trailing" constant="20" id="LSx-Fv-LN3"/>
+                            <constraint firstItem="MwQ-5n-Y90" firstAttribute="centerX" secondItem="FpE-cs-s9L" secondAttribute="centerX" id="Lfp-hX-uuR"/>
+                            <constraint firstItem="MwQ-5n-Y90" firstAttribute="top" secondItem="FpE-cs-s9L" secondAttribute="top" constant="443" id="QSr-af-bdy">
+                                <variation key="heightClass=compact" constant="300"/>
+                            </constraint>
                             <constraint firstItem="dOI-8U-00e" firstAttribute="top" secondItem="FpE-cs-s9L" secondAttribute="top" constant="30" id="phT-EI-vbJ">
                                 <variation key="heightClass=compact" constant="10"/>
                             </constraint>
+                            <constraint firstItem="MwQ-5n-Y90" firstAttribute="trailing" secondItem="FpE-cs-s9L" secondAttribute="trailing" constant="4" id="yuM-OT-xtA"/>
                             <constraint firstItem="dOI-8U-00e" firstAttribute="leading" secondItem="FpE-cs-s9L" secondAttribute="leading" constant="20" id="zre-3E-aTm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FpE-cs-s9L"/>
@@ -263,18 +276,18 @@
                         <outlet property="femaleCharacterSwitch" destination="TOs-fV-EH1" id="53Y-Ud-lof"/>
                         <outlet property="genreTextField" destination="yIR-vJ-569" id="P32-X8-mZj"/>
                         <outlet property="herStorySwitch" destination="bGG-VI-YFe" id="4fe-ff-yiE"/>
+                        <outlet property="infoLabel" destination="ApB-9H-hEe" id="Vbm-2R-g1M"/>
                         <outlet property="nameTextField" destination="4Fx-0H-aRN" id="CW6-ZQ-xyi"/>
                         <outlet property="ratingSlider" destination="aNj-fM-uCn" id="Zjd-KR-GFh"/>
                         <outlet property="ratingTextField" destination="IaN-L7-zm4" id="0t4-PC-rzo"/>
                         <outlet property="userRatingSlider" destination="2ln-Sy-XOK" id="yBL-Jn-RiB"/>
                         <outlet property="userRatingTextField" destination="04J-nv-cDm" id="hNy-Pg-xJL"/>
-                        <outlet property="warningLabel" destination="ApB-9H-hEe" id="Vbm-2R-g1M"/>
                         <outlet property="yearTextField" destination="DNQ-qy-ptq" id="jwS-KK-I4V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iq0-Zw-cuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948" y="537"/>
+            <point key="canvasLocation" x="948" y="536.58170914542734"/>
         </scene>
         <!--Specific Movie-->
         <scene sceneID="anW-0Q-L6g">
@@ -284,8 +297,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KrA-p8-9Wh">
+                                <rect key="frame" x="16" y="64" width="343" height="400"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="02G-mh-lx7">
-                                <rect key="frame" x="16" y="86" width="343" height="173"/>
+                                <rect key="frame" x="16" y="474" width="343" height="173"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1B-MP-zEt">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
@@ -324,15 +340,48 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <variation key="heightClass=compact" distribution="fillEqually"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="02G-mh-lx7" firstAttribute="top" secondItem="3fR-hE-kaP" secondAttribute="top" constant="22" id="5ux-67-tsP"/>
+                            <constraint firstItem="3fR-hE-kaP" firstAttribute="trailing" secondItem="KrA-p8-9Wh" secondAttribute="trailing" constant="16" id="7WG-c5-xr3"/>
+                            <constraint firstItem="02G-mh-lx7" firstAttribute="top" secondItem="3fR-hE-kaP" secondAttribute="top" constant="20" id="F7x-H7-hj1"/>
+                            <constraint firstItem="KrA-p8-9Wh" firstAttribute="top" secondItem="3fR-hE-kaP" secondAttribute="top" id="G6f-qp-JFP"/>
+                            <constraint firstItem="02G-mh-lx7" firstAttribute="width" secondItem="YuT-QM-dzw" secondAttribute="width" multiplier="0.5" id="Kut-je-gsG"/>
                             <constraint firstItem="3fR-hE-kaP" firstAttribute="trailing" secondItem="02G-mh-lx7" secondAttribute="trailing" constant="16" id="W3T-O8-yJf"/>
                             <constraint firstItem="02G-mh-lx7" firstAttribute="leading" secondItem="3fR-hE-kaP" secondAttribute="leading" constant="16" id="by6-NX-pda"/>
+                            <constraint firstItem="02G-mh-lx7" firstAttribute="top" secondItem="KrA-p8-9Wh" secondAttribute="bottom" constant="10" id="ccH-BO-KFq"/>
+                            <constraint firstItem="KrA-p8-9Wh" firstAttribute="width" secondItem="YuT-QM-dzw" secondAttribute="width" multiplier="0.5" id="ieg-Ub-2VF"/>
+                            <constraint firstItem="KrA-p8-9Wh" firstAttribute="top" secondItem="3fR-hE-kaP" secondAttribute="top" id="sgi-dg-XyD"/>
+                            <constraint firstItem="KrA-p8-9Wh" firstAttribute="leading" secondItem="3fR-hE-kaP" secondAttribute="leading" constant="16" id="tte-c1-P42"/>
+                            <constraint firstItem="3fR-hE-kaP" firstAttribute="bottom" secondItem="KrA-p8-9Wh" secondAttribute="bottom" constant="20" id="wln-Ir-TON"/>
+                            <constraint firstItem="3fR-hE-kaP" firstAttribute="bottom" secondItem="02G-mh-lx7" secondAttribute="bottom" constant="20" id="yg0-fs-f2h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3fR-hE-kaP"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="wln-Ir-TON"/>
+                                <exclude reference="F7x-H7-hj1"/>
+                                <exclude reference="Kut-je-gsG"/>
+                                <exclude reference="ieg-Ub-2VF"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="W3T-O8-yJf"/>
+                                <include reference="wln-Ir-TON"/>
+                                <include reference="F7x-H7-hj1"/>
+                                <include reference="Kut-je-gsG"/>
+                                <exclude reference="ccH-BO-KFq"/>
+                                <include reference="ieg-Ub-2VF"/>
+                                <exclude reference="tte-c1-P42"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="oDu-AX-W65" appends="YES" id="jZR-pr-ULZ"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Specific Movie" id="dFh-CS-ejj">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="AZY-Ml-gVI">
@@ -346,13 +395,19 @@
                         <outlet property="genreLabel" destination="Ekf-sK-aWf" id="TMw-q8-hsJ"/>
                         <outlet property="herStoryLabel" destination="Rg6-q8-yCT" id="DSz-K8-1yk"/>
                         <outlet property="myRatingLabel" destination="gOS-13-yTJ" id="69i-kj-aKj"/>
+                        <outlet property="posterImageView" destination="KrA-p8-9Wh" id="IUP-Om-g02"/>
                         <outlet property="ratingLabel" destination="TGe-kQ-ohT" id="CaK-5X-i0n"/>
                         <outlet property="yearLabel" destination="D1B-MP-zEt" id="1Zi-Uc-Ufz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBQ-jA-gZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="oDu-AX-W65">
+                    <connections>
+                        <action selector="swipeRight:" destination="DkB-HA-68r" id="Oy5-6h-0Rp"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="921" y="-269"/>
+            <point key="canvasLocation" x="920.68965517241384" y="-269.60000000000002"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ahz-68-KDe">
@@ -374,6 +429,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Xvm-C7-FPF"/>
+        <segue reference="lyo-SL-pKf"/>
     </inferredMetricsTieBreakers>
 </document>
