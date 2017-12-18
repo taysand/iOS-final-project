@@ -38,9 +38,7 @@ class MovieDetailViewController: UIViewController {
         myRatingLabel.text = "My rating: \(String(format: "%.1f", movie.userRating))/5"
         femaleCharacterLabel.text = "Main female character? \((movie.mainFemaleCharacter ? "Yes" : "No"))"
         herStoryLabel.text = "Her story? \((movie.herStory ? "Yes" : "No"))"
-        if movie.poster != "" {
-            loadPoster()
-        }
+        loadPoster()
     }
     
     func loadPoster() {
@@ -69,20 +67,6 @@ class MovieDetailViewController: UIViewController {
             self.posterImageView.image = downloadedImage
         }
     }
-    
-//    func handlePosterImageLoad(data: Data?, response: URLResponse?, error: Error?) {
-//        //check that we got data back
-//        guard error == nil, let data = data else {
-//            print("no data or an error")
-//            return
-//        }
-//
-//        let downloadedImage = UIImage(data: data)
-//
-//        DispatchQueue.main.async {
-//            self.posterImageView.image = downloadedImage
-//        }
-//    }
     
     // MARK: - Navigation
 
