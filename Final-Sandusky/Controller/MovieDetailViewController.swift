@@ -98,4 +98,7 @@ class MovieDetailViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
 
+    @IBAction func swipeRight(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }

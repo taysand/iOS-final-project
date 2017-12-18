@@ -211,6 +211,6 @@ class AddMovieViewController: UIViewController {
             infoLabel.text = "Please fill all fields"
         }
     }
-
+    
 }
 

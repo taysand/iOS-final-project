@@ -341,6 +341,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="3fR-hE-kaP" firstAttribute="trailing" secondItem="KrA-p8-9Wh" secondAttribute="trailing" constant="16" id="7WG-c5-xr3"/>
                             <constraint firstItem="3fR-hE-kaP" firstAttribute="trailing" secondItem="02G-mh-lx7" secondAttribute="trailing" constant="16" id="W3T-O8-yJf"/>
@@ -351,6 +352,9 @@
                             <constraint firstItem="KrA-p8-9Wh" firstAttribute="leading" secondItem="3fR-hE-kaP" secondAttribute="leading" constant="16" id="tte-c1-P42"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3fR-hE-kaP"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="oDu-AX-W65" appends="YES" id="jZR-pr-ULZ"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Specific Movie" id="dFh-CS-ejj">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="AZY-Ml-gVI">
@@ -370,6 +374,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBQ-jA-gZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="oDu-AX-W65">
+                    <connections>
+                        <action selector="swipeRight:" destination="DkB-HA-68r" id="Oy5-6h-0Rp"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="920.79999999999995" y="-269.41529235382313"/>
         </scene>
