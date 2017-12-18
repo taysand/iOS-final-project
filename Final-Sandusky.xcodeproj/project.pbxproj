@@ -17,6 +17,7 @@
 		34AC0E391FD8857D00073B07 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E381FD8857D00073B07 /* DataController.swift */; };
 		34AC0E3B1FD88DC400073B07 /* AddMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E3A1FD88DC400073B07 /* AddMovieViewController.swift */; };
 		34AC0E3D1FD88DCE00073B07 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E3C1FD88DCE00073B07 /* MovieDetailViewController.swift */; };
+		34E4DEBF1FE8272400D02DAC /* CodableMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E4DEBE1FE8272400D02DAC /* CodableMovie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		34AC0E381FD8857D00073B07 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		34AC0E3A1FD88DC400073B07 /* AddMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieViewController.swift; sourceTree = "<group>"; };
 		34AC0E3C1FD88DCE00073B07 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		34E4DEBE1FE8272400D02DAC /* CodableMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMovie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				34AC0E271FD8829B00073B07 /* Final_Sandusky.xcdatamodeld */,
 				34AC0E381FD8857D00073B07 /* DataController.swift */,
+				34E4DEBE1FE8272400D02DAC /* CodableMovie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34E4DEBF1FE8272400D02DAC /* CodableMovie.swift in Sources */,
 				34AC0E231FD8829B00073B07 /* MoviesTableViewController.swift in Sources */,
 				34AC0E391FD8857D00073B07 /* DataController.swift in Sources */,
 				34AC0E211FD8829B00073B07 /* AppDelegate.swift in Sources */,
