@@ -363,20 +363,20 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="wln-Ir-TON"/>
+                                <exclude reference="ieg-Ub-2VF"/>
                                 <exclude reference="F7x-H7-hj1"/>
                                 <exclude reference="Kut-je-gsG"/>
-                                <exclude reference="ieg-Ub-2VF"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
                                 <exclude reference="W3T-O8-yJf"/>
                                 <include reference="wln-Ir-TON"/>
+                                <include reference="ieg-Ub-2VF"/>
+                                <exclude reference="tte-c1-P42"/>
                                 <include reference="F7x-H7-hj1"/>
                                 <include reference="Kut-je-gsG"/>
                                 <exclude reference="ccH-BO-KFq"/>
-                                <include reference="ieg-Ub-2VF"/>
-                                <exclude reference="tte-c1-P42"/>
                             </mask>
                         </variation>
                         <connections>
@@ -429,6 +429,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lyo-SL-pKf"/>
+        <segue reference="Xvm-C7-FPF"/>
     </inferredMetricsTieBreakers>
 </document>
