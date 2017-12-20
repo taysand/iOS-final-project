@@ -34,7 +34,7 @@ class MovieDetailViewController: UIViewController {
         self.title = movie.name
         yearLabel.text = "Year: \(movie.year)"
         genreLabel.text = "Genre: \(movie.genre!)"
-        ratingLabel.text = "Rating: \(String(format: "%.1f", movie.rating))/5"
+        ratingLabel.text = "Average rating: \(String(format: "%.1f", movie.rating))/5"
         myRatingLabel.text = "My rating: \(String(format: "%.1f", movie.userRating))/5"
         femaleCharacterLabel.text = "Main female character? \((movie.mainFemaleCharacter ? "Yes" : "No"))"
         herStoryLabel.text = "Her story? \((movie.herStory ? "Yes" : "No"))"
