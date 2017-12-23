@@ -38,9 +38,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Movies" id="17A-0k-BH7">
-                        <barButtonItem key="leftBarButtonItem" title="Optimism" id="0p0-rK-gQD">
+                        <barButtonItem key="leftBarButtonItem" title="Sort" id="0p0-rK-gQD">
                             <connections>
-                                <action selector="optimismButtonTapped:" destination="ju6-Xx-zgQ" id="BDj-3Y-c8I"/>
+                                <action selector="sortButtonTapped:" destination="ju6-Xx-zgQ" id="BDj-3Y-c8I"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eWQ-Fc-yhw">
@@ -509,6 +509,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jnd-qC-kM0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="W7g-Yq-Lt8">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -525,6 +526,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lyo-SL-pKf"/>
+        <segue reference="Xvm-C7-FPF"/>
     </inferredMetricsTieBreakers>
 </document>

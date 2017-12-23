@@ -17,35 +17,62 @@ class MoviesTableViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
     @IBOutlet weak var optimismButton: UIBarButtonItem!
     var optimistic = false
+    
+    //sorting
+//    var picker = UIPickerView()
+    let pickerDataSource = ["Title", "Rating", "Year", "Female Character", "Her Story"];
 
     override func viewDidLoad() {
         super.viewDidLoad()
         optimistic = userDefaults.bool(forKey: "optimistic")
         reloadData()
+        
+        //set up sorting picker
+        //https://stackoverflow.com/questions/42319153/show-uipickerview-on-label-click
+//        picker.frame = CGRect(x: 0, y: view.bounds.height / 1.7, width: view.bounds.width, height: 200)
+//        picker.backgroundColor = .white
+//        picker.delegate = self
+//        picker.dataSource = self
+//        picker.isHidden = true
+//        view.addSubview(picker)
     }
     
     func reloadData() {
-        updateOptimism()
+//        updateOptimism()
         fetchData()
     }
     
-    func updateOptimism() {
-        switch optimistic {
-        case true:
-            optimismButton.tintColor = .green
-        case false:
-            optimismButton.tintColor = .red
-        }
-    }
+//    func updateOptimism() {
+//        switch optimistic {
+//        case true:
+//            optimismButton.tintColor = .green
+//        case false:
+//            optimismButton.tintColor = .red
+//        }
+//    }
 
     override func viewWillAppear(_ animated: Bool) {
         reloadData()
     }
     
-    @IBAction func optimismButtonTapped(_ sender: Any) {
-        optimistic = !optimistic
-        updateOptimism()
-        userDefaults.set(optimistic, forKey: "optimistic")
+    @IBAction func sortButtonTapped(_ sender: Any) {
+//        picker.isHidden = false
+        
+        //https://stackoverflow.com/questions/40190629/swift-uialertcontroller-with-pickerview-button-action-stay-up/40191156#40191156
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 250,height: 150)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 150))
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        vc.view.addSubview(pickerView)
+        let editRadiusAlert = UIAlertController(title: "Sort by", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        editRadiusAlert.setValue(vc, forKey: "contentViewController")
+        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+        self.present(editRadiusAlert, animated: true)
+//
+//        optimistic = !optimistic
+//        updateOptimism()
+//        userDefaults.set(optimistic, forKey: "optimistic")
     }
     
     // MARK: - Core Data
@@ -122,3 +149,16 @@ class MoviesTableViewController: UITableViewController {
     }
 }
 
+extension MoviesTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDataSource.count;
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerDataSource[row] as String
+    }
+}
