@@ -86,7 +86,10 @@ class MoviesTableViewController: UITableViewController {
         vc.view.addSubview(pickerView)
         let editRadiusAlert = UIAlertController(title: "Sort by", message: "", preferredStyle: UIAlertControllerStyle.alert)
         editRadiusAlert.setValue(vc, forKey: "contentViewController")
-        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default))
+        let doneAction = UIAlertAction(title: "Done", style: .default) { (_: UIAlertAction) in
+            self.fetchData()
+        }
+        editRadiusAlert.addAction(doneAction)
         present(editRadiusAlert, animated: true) {
             
         }
@@ -100,8 +103,25 @@ class MoviesTableViewController: UITableViewController {
     
     func fetchData() {
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest();
-        let sortByTitleAscending = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [sortByTitleAscending]
+        
+        let sortBy: NSSortDescriptor
+        if let sorting = sortOption {
+            switch sorting {
+            case .title:
+                sortBy = NSSortDescriptor(key: "name", ascending: true)
+            case .rating:
+                sortBy = NSSortDescriptor(key: "userRating", ascending: false)
+            case .year:
+                sortBy = NSSortDescriptor(key: "year", ascending: false)
+            case .femaleCharacter:
+                sortBy = NSSortDescriptor(key: "mainFemaleCharacter", ascending: false)
+            case .herStory:
+                sortBy = NSSortDescriptor(key: "herStory", ascending: false)
+            }
+        } else {
+            sortBy = NSSortDescriptor(key: "name", ascending: true)
+        }
+        fetchRequest.sortDescriptors = [sortBy]
 
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
             movies = result
@@ -171,6 +191,7 @@ class MoviesTableViewController: UITableViewController {
 }
 
 extension MoviesTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
