@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		343A35661FD91947004ED0F7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 343A35651FD91947004ED0F7 /* Settings.bundle */; };
+		34895C311FEEFCB000466CCC /* SortingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34895C301FEEFCB000466CCC /* SortingOptions.swift */; };
 		34AC0E211FD8829B00073B07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E201FD8829B00073B07 /* AppDelegate.swift */; };
 		34AC0E231FD8829B00073B07 /* MoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC0E221FD8829B00073B07 /* MoviesTableViewController.swift */; };
 		34AC0E261FD8829B00073B07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34AC0E241FD8829B00073B07 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		343A35651FD91947004ED0F7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		34895C301FEEFCB000466CCC /* SortingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOptions.swift; sourceTree = "<group>"; };
 		34AC0E1D1FD8829B00073B07 /* Final-Sandusky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Final-Sandusky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34AC0E201FD8829B00073B07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34AC0E221FD8829B00073B07 /* MoviesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				34AC0E271FD8829B00073B07 /* Final_Sandusky.xcdatamodeld */,
 				34AC0E381FD8857D00073B07 /* DataController.swift */,
 				34E4DEBE1FE8272400D02DAC /* CodableMovie.swift */,
+				34895C301FEEFCB000466CCC /* SortingOptions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34E4DEBF1FE8272400D02DAC /* CodableMovie.swift in Sources */,
+				34895C311FEEFCB000466CCC /* SortingOptions.swift in Sources */,
 				34AC0E231FD8829B00073B07 /* MoviesTableViewController.swift in Sources */,
 				34AC0E391FD8857D00073B07 /* DataController.swift in Sources */,
 				34AC0E211FD8829B00073B07 /* AppDelegate.swift in Sources */,

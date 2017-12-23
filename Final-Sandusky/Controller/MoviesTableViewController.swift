@@ -19,12 +19,14 @@ class MoviesTableViewController: UITableViewController {
     var optimistic = false
     
     //sorting
-//    var picker = UIPickerView()
+    var sortOption: SortingOptions?
     let pickerDataSource = ["Title", "Rating", "Year", "Female Character", "Her Story"];
+    let sortingKey = "sorting"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         optimistic = userDefaults.bool(forKey: "optimistic")
+        setSortingOption()
         reloadData()
         
         //set up sorting picker
@@ -35,6 +37,19 @@ class MoviesTableViewController: UITableViewController {
 //        picker.dataSource = self
 //        picker.isHidden = true
 //        view.addSubview(picker)
+    }
+    
+    func setSortingOption() {
+        if let sortValue = userDefaults.string(forKey: sortingKey) {
+            sortOption = SortingOptions(rawValue: sortValue)
+            print(sortOption!)
+        } else {
+            print("oh no")
+            let newSort = SortingOptions.title.rawValue
+            userDefaults.set(newSort, forKey: sortingKey)
+            sortOption = SortingOptions(rawValue: newSort)
+            print(sortOption!)
+        }
     }
     
     func reloadData() {
@@ -68,12 +83,19 @@ class MoviesTableViewController: UITableViewController {
         let editRadiusAlert = UIAlertController(title: "Sort by", message: "", preferredStyle: UIAlertControllerStyle.alert)
         editRadiusAlert.setValue(vc, forKey: "contentViewController")
         editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
-        self.present(editRadiusAlert, animated: true)
+//        self.present(editRadiusAlert, animated: true, handler: sortPicked)
+        present(editRadiusAlert, animated: true) {
+            
+        }
 //
 //        optimistic = !optimistic
 //        updateOptimism()
 //        userDefaults.set(optimistic, forKey: "optimistic")
     }
+    
+//    func sortPicked() {
+//
+//    }
     
     // MARK: - Core Data
     
