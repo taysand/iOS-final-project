@@ -83,6 +83,7 @@ class MoviesTableViewController: UITableViewController {
         let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 150))
         pickerView.delegate = self
         pickerView.dataSource = self
+        pickerView.selectRow(pickerDataSource.index(of: sortOption!.rawValue)!, inComponent: 0, animated: false)
         vc.view.addSubview(pickerView)
         let editRadiusAlert = UIAlertController(title: "Sort by", message: "", preferredStyle: UIAlertControllerStyle.alert)
         editRadiusAlert.setValue(vc, forKey: "contentViewController")
