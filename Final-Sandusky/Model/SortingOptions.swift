@@ -12,6 +12,6 @@ enum SortingOptions: String {
     case title = "Title"
     case rating = "Rating"
     case year = "Year"
-    case femaleCharacter = "Female character"
-    case herStory = "Her story"
+    case femaleCharacter = "Female Character"
+    case herStory = "Her Story"
 }

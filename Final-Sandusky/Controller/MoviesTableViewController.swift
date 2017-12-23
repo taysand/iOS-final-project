@@ -12,7 +12,7 @@ import CoreData
 
 class MoviesTableViewController: UITableViewController {
 
-    var movies:[Movie] = []
+    var movies: [Movie] = []
     var dataController: DataController!
     let userDefaults = UserDefaults.standard
     @IBOutlet weak var optimismButton: UIBarButtonItem!
@@ -39,6 +39,11 @@ class MoviesTableViewController: UITableViewController {
 //        view.addSubview(picker)
     }
     
+    func updateSortingOption(newSort: String) {
+        userDefaults.set(newSort, forKey: sortingKey)
+        sortOption = SortingOptions(rawValue: newSort)
+    }
+    
     func setSortingOption() {
         if let sortValue = userDefaults.string(forKey: sortingKey) {
             sortOption = SortingOptions(rawValue: sortValue)
@@ -46,8 +51,7 @@ class MoviesTableViewController: UITableViewController {
         } else {
             print("oh no")
             let newSort = SortingOptions.title.rawValue
-            userDefaults.set(newSort, forKey: sortingKey)
-            sortOption = SortingOptions(rawValue: newSort)
+            updateSortingOption(newSort: newSort)
             print(sortOption!)
         }
     }
@@ -82,20 +86,15 @@ class MoviesTableViewController: UITableViewController {
         vc.view.addSubview(pickerView)
         let editRadiusAlert = UIAlertController(title: "Sort by", message: "", preferredStyle: UIAlertControllerStyle.alert)
         editRadiusAlert.setValue(vc, forKey: "contentViewController")
-        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
-//        self.present(editRadiusAlert, animated: true, handler: sortPicked)
+        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default))
         present(editRadiusAlert, animated: true) {
             
         }
-//
+
 //        optimistic = !optimistic
 //        updateOptimism()
 //        userDefaults.set(optimistic, forKey: "optimistic")
     }
-    
-//    func sortPicked() {
-//
-//    }
     
     // MARK: - Core Data
     
@@ -182,5 +181,10 @@ extension MoviesTableViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerDataSource[row] as String
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        updateSortingOption(newSort: pickerDataSource[row])
+        print(sortOption!)
     }
 }
