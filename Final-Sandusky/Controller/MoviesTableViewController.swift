@@ -94,14 +94,19 @@ class MoviesTableViewController: UITableViewController {
             switch sorting {
             case .title:
                 sortBy = NSSortDescriptor(key: "name", ascending: true)
+                self.navigationItem.title = "Movies by Title"
             case .rating:
                 sortBy = NSSortDescriptor(key: "userRating", ascending: false)
+                self.navigationItem.title = "Movies by Rating"
             case .year:
                 sortBy = NSSortDescriptor(key: "year", ascending: false)
+                self.navigationItem.title = "Movies by Year"
             case .femaleCharacter:
                 sortBy = NSSortDescriptor(key: "mainFemaleCharacter", ascending: false)
+                self.navigationItem.title = "Movies by Main Woman"
             case .herStory:
                 sortBy = NSSortDescriptor(key: "herStory", ascending: false)
+                self.navigationItem.title = "Movies by Her Story"
             }
         } else {
             sortBy = NSSortDescriptor(key: "name", ascending: true)
@@ -131,6 +136,33 @@ class MoviesTableViewController: UITableViewController {
         
         let movie = movies[indexPath.row]
         cell.textLabel?.text = movie.name
+        
+        let detailString: String
+        if let sorting = sortOption {
+            switch sorting {
+            case .rating:
+                detailString = String(format: "%.1f", movie.userRating)
+            case .year:
+                detailString = String(movie.year)
+            case .femaleCharacter:
+                if movie.mainFemaleCharacter {
+                    detailString = "Heck yeah"
+                } else {
+                    detailString = "Nope"
+                }
+            case .herStory:
+                if movie.mainFemaleCharacter {
+                    detailString = "Heck yeah"
+                } else {
+                    detailString = "Nope"
+                }
+            default:
+                detailString = ""
+            }
+        } else {
+            detailString = ""
+        }
+        cell.detailTextLabel?.text = detailString
         
         return cell
     }
