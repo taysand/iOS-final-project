@@ -456,23 +456,42 @@
         <!--Settings-->
         <scene sceneID="e50-Kk-IHy">
             <objects>
-                <viewController id="cFT-yN-nbj" sceneMemberID="viewController">
+                <viewController id="cFT-yN-nbj" customClass="SettingsViewController" customModule="Final_Sandusky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="22G-gL-P3s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tek-Yu-sJ5">
-                                <rect key="frame" x="207" y="290" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oi3-Z2-cQz">
+                                <rect key="frame" x="30" y="87" width="315" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optimistic Switches " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tek-Yu-sJ5">
+                                        <rect key="frame" x="0.0" y="0.0" width="266" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zk4-3C-v1P">
+                                        <rect key="frame" x="266" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="optimismSwitchSwitched:" destination="cFT-yN-nbj" eventType="valueChanged" id="0uN-Ki-uhu"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oi3-Z2-cQz" firstAttribute="leading" secondItem="4ZZ-Ma-3w0" secondAttribute="leading" constant="30" id="05b-GL-mKB"/>
+                            <constraint firstItem="4ZZ-Ma-3w0" firstAttribute="trailing" secondItem="oi3-Z2-cQz" secondAttribute="trailing" constant="30" id="4sP-8q-Vxk"/>
+                            <constraint firstItem="oi3-Z2-cQz" firstAttribute="top" secondItem="4ZZ-Ma-3w0" secondAttribute="top" constant="67" id="PIa-t2-W87"/>
+                            <constraint firstItem="oi3-Z2-cQz" firstAttribute="centerX" secondItem="4ZZ-Ma-3w0" secondAttribute="centerX" id="rhE-05-oBq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4ZZ-Ma-3w0"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="AxQ-xI-vKp"/>
+                    <connections>
+                        <outlet property="optimismSwitch" destination="zk4-3C-v1P" id="ddr-vL-1j2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sO4-Z5-sX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

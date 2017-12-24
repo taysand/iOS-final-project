@@ -13,7 +13,7 @@ class AddMovieViewController: UIViewController {
 
     var dataController: DataController!
     var movie: Movie?
-    var optimistic: Bool!
+    var optimistic = false
     var updatingMovie = false
     var posterURL = ""
     
@@ -31,6 +31,8 @@ class AddMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        optimistic = UserDefaults.standard.bool(forKey: "optimistic")
         
         //https://medium.com/@KaushElsewhere/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
@@ -203,7 +205,6 @@ class AddMovieViewController: UIViewController {
             let movieDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: "movieDetailView") as! MovieDetailViewController
             movieDetailViewController.movie = movie
             movieDetailViewController.dataController = dataController
-            movieDetailViewController.optimistic = optimistic
             self.navigationController!.pushViewController(movieDetailViewController, animated: true)
         } else {
             print("oh no")

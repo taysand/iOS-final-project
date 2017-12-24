@@ -12,7 +12,6 @@ class MovieDetailViewController: UIViewController {
 
     var movie: Movie!
     var dataController: DataController!
-    var optimistic: Bool!
     
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var yearLabel: UILabel!
@@ -75,7 +74,6 @@ class MovieDetailViewController: UIViewController {
         let addMovieViewController = segue.destination as! AddMovieViewController
         addMovieViewController.dataController = dataController
         addMovieViewController.movie = movie
-        addMovieViewController.optimistic = optimistic
     }
     
     @objc func backToInitial(sender: AnyObject) {
