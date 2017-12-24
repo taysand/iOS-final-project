@@ -16,16 +16,14 @@ class MoviesTableViewController: UITableViewController {
     var dataController: DataController!
     let userDefaults = UserDefaults.standard
     @IBOutlet weak var optimismButton: UIBarButtonItem!
-    var optimistic = false
     
     //sorting
     var sortOption: SortingOptions?
-    let pickerDataSource = ["Title", "Rating", "Year", "Female Character", "Her Story"];
+    let pickerDataSource = ["Title", "Rating", "Year", "Main Female Character", "Her Story"];
     let sortingKey = "sorting"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        optimistic = userDefaults.bool(forKey: "optimistic")
         setSortingOption()
         reloadData()
         
@@ -57,18 +55,8 @@ class MoviesTableViewController: UITableViewController {
     }
     
     func reloadData() {
-//        updateOptimism()
         fetchData()
     }
-    
-//    func updateOptimism() {
-//        switch optimistic {
-//        case true:
-//            optimismButton.tintColor = .green
-//        case false:
-//            optimismButton.tintColor = .red
-//        }
-//    }
 
     override func viewWillAppear(_ animated: Bool) {
         reloadData()
@@ -94,10 +82,6 @@ class MoviesTableViewController: UITableViewController {
         present(editRadiusAlert, animated: true) {
             
         }
-
-//        optimistic = !optimistic
-//        updateOptimism()
-//        userDefaults.set(optimistic, forKey: "optimistic")
     }
     
     // MARK: - Core Data
@@ -180,11 +164,9 @@ class MoviesTableViewController: UITableViewController {
             let selectedMovie = movies[selectedRow!]
             movieDetailViewController.movie = selectedMovie
             movieDetailViewController.dataController = dataController
-            movieDetailViewController.optimistic = optimistic
         case "addMovieSegue":
             let addMovieViewController = segue.destination as! AddMovieViewController
             addMovieViewController.dataController = dataController
-            addMovieViewController.optimistic = optimistic
         default:
             break
         }
