@@ -12,48 +12,117 @@ import CoreData
 
 class MoviesTableViewController: UITableViewController {
 
-    var movies:[Movie] = []
+    var movies: [Movie] = []
     var dataController: DataController!
     let userDefaults = UserDefaults.standard
     @IBOutlet weak var optimismButton: UIBarButtonItem!
     var optimistic = false
+    
+    //sorting
+    var sortOption: SortingOptions?
+    let pickerDataSource = ["Title", "Rating", "Year", "Female Character", "Her Story"];
+    let sortingKey = "sorting"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         optimistic = userDefaults.bool(forKey: "optimistic")
+        setSortingOption()
         reloadData()
+        
+        //set up sorting picker
+        //https://stackoverflow.com/questions/42319153/show-uipickerview-on-label-click
+//        picker.frame = CGRect(x: 0, y: view.bounds.height / 1.7, width: view.bounds.width, height: 200)
+//        picker.backgroundColor = .white
+//        picker.delegate = self
+//        picker.dataSource = self
+//        picker.isHidden = true
+//        view.addSubview(picker)
+    }
+    
+    func updateSortingOption(newSort: String) {
+        userDefaults.set(newSort, forKey: sortingKey)
+        sortOption = SortingOptions(rawValue: newSort)
+    }
+    
+    func setSortingOption() {
+        if let sortValue = userDefaults.string(forKey: sortingKey) {
+            sortOption = SortingOptions(rawValue: sortValue)
+            print(sortOption!)
+        } else {
+            print("oh no")
+            let newSort = SortingOptions.title.rawValue
+            updateSortingOption(newSort: newSort)
+            print(sortOption!)
+        }
     }
     
     func reloadData() {
-        updateOptimism()
+//        updateOptimism()
         fetchData()
     }
     
-    func updateOptimism() {
-        switch optimistic {
-        case true:
-            optimismButton.tintColor = .green
-        case false:
-            optimismButton.tintColor = .red
-        }
-    }
+//    func updateOptimism() {
+//        switch optimistic {
+//        case true:
+//            optimismButton.tintColor = .green
+//        case false:
+//            optimismButton.tintColor = .red
+//        }
+//    }
 
     override func viewWillAppear(_ animated: Bool) {
         reloadData()
     }
     
-    @IBAction func optimismButtonTapped(_ sender: Any) {
-        optimistic = !optimistic
-        updateOptimism()
-        userDefaults.set(optimistic, forKey: "optimistic")
+    @IBAction func sortButtonTapped(_ sender: Any) {
+//        picker.isHidden = false
+        
+        //https://stackoverflow.com/questions/40190629/swift-uialertcontroller-with-pickerview-button-action-stay-up/40191156#40191156
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 250,height: 150)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 150))
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.selectRow(pickerDataSource.index(of: sortOption!.rawValue)!, inComponent: 0, animated: false)
+        vc.view.addSubview(pickerView)
+        let editRadiusAlert = UIAlertController(title: "Sort by", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        editRadiusAlert.setValue(vc, forKey: "contentViewController")
+        let doneAction = UIAlertAction(title: "Done", style: .default) { (_: UIAlertAction) in
+            self.fetchData()
+        }
+        editRadiusAlert.addAction(doneAction)
+        present(editRadiusAlert, animated: true) {
+            
+        }
+
+//        optimistic = !optimistic
+//        updateOptimism()
+//        userDefaults.set(optimistic, forKey: "optimistic")
     }
     
     // MARK: - Core Data
     
     func fetchData() {
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest();
-        let sortByTitleAscending = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [sortByTitleAscending]
+        
+        let sortBy: NSSortDescriptor
+        if let sorting = sortOption {
+            switch sorting {
+            case .title:
+                sortBy = NSSortDescriptor(key: "name", ascending: true)
+            case .rating:
+                sortBy = NSSortDescriptor(key: "userRating", ascending: false)
+            case .year:
+                sortBy = NSSortDescriptor(key: "year", ascending: false)
+            case .femaleCharacter:
+                sortBy = NSSortDescriptor(key: "mainFemaleCharacter", ascending: false)
+            case .herStory:
+                sortBy = NSSortDescriptor(key: "herStory", ascending: false)
+            }
+        } else {
+            sortBy = NSSortDescriptor(key: "name", ascending: true)
+        }
+        fetchRequest.sortDescriptors = [sortBy]
 
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
             movies = result
@@ -122,3 +191,22 @@ class MoviesTableViewController: UITableViewController {
     }
 }
 
+extension MoviesTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDataSource.count;
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerDataSource[row] as String
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        updateSortingOption(newSort: pickerDataSource[row])
+        print(sortOption!)
+    }
+}
