@@ -34,6 +34,8 @@ class AddMovieViewController: UIViewController {
         
         optimistic = UserDefaults.standard.bool(forKey: "optimistic")
         
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Movies", style: .done, target: self, action: #selector(self.backToInitial(sender:)))
+        
         //https://medium.com/@KaushElsewhere/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
@@ -213,5 +215,12 @@ class AddMovieViewController: UIViewController {
         }
     }
     
+    @objc func backToInitial(sender: AnyObject) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func swipeRight(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }
 
