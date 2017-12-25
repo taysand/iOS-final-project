@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		341795FF1FF18FB0007FB885 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341795FE1FF18FB0007FB885 /* RatingControl.swift */; };
 		343A35661FD91947004ED0F7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 343A35651FD91947004ED0F7 /* Settings.bundle */; };
 		34895C311FEEFCB000466CCC /* SortingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34895C301FEEFCB000466CCC /* SortingOptions.swift */; };
 		34895C331FEF26B300466CCC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34895C321FEF26B300466CCC /* SettingsViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		341795FE1FF18FB0007FB885 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		343A35651FD91947004ED0F7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		34895C301FEEFCB000466CCC /* SortingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOptions.swift; sourceTree = "<group>"; };
 		34895C321FEF26B300466CCC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				34AC0E271FD8829B00073B07 /* Final_Sandusky.xcdatamodeld */,
 				34AC0E381FD8857D00073B07 /* DataController.swift */,
+				341795FE1FF18FB0007FB885 /* RatingControl.swift */,
 				34E4DEBE1FE8272400D02DAC /* CodableMovie.swift */,
 				34895C301FEEFCB000466CCC /* SortingOptions.swift */,
 			);
@@ -193,6 +196,7 @@
 				34AC0E3B1FD88DC400073B07 /* AddMovieViewController.swift in Sources */,
 				34AC0E3D1FD88DCE00073B07 /* MovieDetailViewController.swift in Sources */,
 				34AC0E291FD8829B00073B07 /* Final_Sandusky.xcdatamodeld in Sources */,
+				341795FF1FF18FB0007FB885 /* RatingControl.swift in Sources */,
 				34895C331FEF26B300466CCC /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
