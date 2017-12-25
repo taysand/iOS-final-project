@@ -26,7 +26,7 @@ class MovieDetailViewController: UIViewController {
         updateUI()
         
         //https://stackoverflow.com/questions/39223039/override-back-button-in-navigation-controller
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Movies", style: .done, target: self, action: #selector(self.backToInitial(sender:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Movies", style: .plain, target: self, action: #selector(self.backToInitial(sender:)))
     }
 
     func updateUI() {
