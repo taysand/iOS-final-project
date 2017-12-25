@@ -34,7 +34,7 @@ class AddMovieViewController: UIViewController {
         
         optimistic = UserDefaults.standard.bool(forKey: "optimistic")
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Movies", style: .done, target: self, action: #selector(self.backToInitial(sender:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Movies", style: .plain, target: self, action: #selector(self.backToInitial(sender:)))
         
         //https://medium.com/@KaushElsewhere/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
