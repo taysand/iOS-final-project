@@ -6,3 +6,4 @@ Future goals
 - track whether movies have major queer characters or characters of color
 - track intersections between these three major categories
 - display charts to make this data easy to read
+- ability to download posters and add custom images
